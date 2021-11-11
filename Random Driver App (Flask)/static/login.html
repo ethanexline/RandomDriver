@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/static/css/index.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+        <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <center><h1 style="margin-top: 5vh;">Fleetmaster HR</h1></center>
+        <!-- Default form login -->
+        <form class="text-center border border-light p-5" action="" method="post">
+
+            <p class="h4 mb-4">Sign in</p>
+
+            <!-- Email -->
+            <input type="username" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username" name="username">
+
+            <!-- Password -->
+            <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password">
+
+
+            <!-- Sign in button -->
+            <button class="btn btn-primary btn-block my-4" type="submit">Sign in</button>
+
+            <!-- Register -->
+            <p>Not a member?
+                <a href="mailto:support@fleetmasterexpress.com?subject=Access to Fleetmaster HR&body=Please give me access to Fleetmaster HR">
+                    Contact IT
+                </a>
+            </p>
+            <p style="color: red" id='fail-message'></p>
+        </form>
+        <!-- Default form login -->
+    </body>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+
+    <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const fail = urlParams.get('fail')
+    if(fail){
+        var fail_area = document.getElementById('fail-message');
+        fail_area.innerHTML = "Username or Password Incorrect"
+    }
+    </script>
+</html>

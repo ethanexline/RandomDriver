@@ -1,0 +1,99 @@
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+
+
+.hidden{
+    display: none;
+}
+
+.page{
+    text-align: center;
+    margin: auto;
+}
+
+td{
+  font-size: 13pt !important;
+  font-weight: bold !important;
+}
+
+th{
+  font-size: 15pt !important;
+  font-weight: bolder !important;
+}
+
+form{
+  width: 450px;
+  margin: auto;
+  margin-top: 10vh;
+}
+
+.PASS{
+  color: #00c851;
+  
+}
+.FAIL{
+  color: #ff3547;
+
+}
+.CANCEL{
+  color:#fb3;
+}
+
+.list-group-item.active{
+  border-color: gray !important;
+
+}
+.active a{
+  color: white !important;
+}
+.card{
+  margin: 10px;
+  min-height: 450px;
+  min-width: 450px !important;
+
+}
+
+

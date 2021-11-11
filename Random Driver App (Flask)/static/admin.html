@@ -1,0 +1,281 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/static/css/index.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+        <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+
+            <!-- Sidebar -->
+            <div class="bg-light border-right" id="sidebar-wrapper">
+              <div class="sidebar-heading"><b>Fleetmaster HR</b></div>
+              <div class="list-group list-group-flush">
+                <a href="/" id="nav-option-1" class="list-group-item list-group-item-action bg-light">Current Random Tests</a>
+                <a href="/historical" id="nav-option-2" class="list-group-item list-group-item-action bg-light">Historical Random Tests</a>
+                <a href="/admin" id="nav-option-3" class="list-group-item list-group-item-action bg-dark active">Administration</a>
+
+              </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+        
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+        
+              <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+               
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        
+              <div class="container-fluid">
+                
+                <div class="page" id="nav-option-1-page">
+                  <br>
+                    <h1>Administration</h1>
+                    
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                          <a onclick="columnSizeAdjust()" class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                            aria-selected="true">Users</a>
+                        </li>
+                        <li class="nav-item">
+                          <a onclick="columnSizeAdjust()" class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                            aria-selected="false">Settings</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <br><h3>Users</h3>
+                            <div class="user-area">
+                                <table id="data_table_3" class="shadow table table-striped table-bordered table-hover">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Last Login</th>
+                                        <th scope="col">Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="users_body">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Add User
+                            </button>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form style="margin: 5px;"  action="/api/adduser" method="post">
+                                            <div class="form-group">
+                                                <label for="username"><b>Username: </b>(Minimum 8 characters)</label>
+                                                <input type="username" class="form-control" id="username" name="username"  placeholder="Username">
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="exampleInputPassword1"><b>Password: </b>(Minimum 8 characters, at least 1 capital and at least 1 number)</label>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                              </div>
+                                              <button type="submit" class="btn btn-primary">Add User</button>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Settings Tab-->
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <br><h3>Settings</h3>
+                            <div class="row" >
+
+                              <div class="card col-sm">
+                                <br>
+                                <h5>Excluded Drivers</h5>
+                                <br>
+                                  <div class="row">
+                                    <div class="col-sm">
+                                      <h5>Currently Excluded</h5>
+                                    <table id="data_table_4" class="shadow table table-striped table-bordered table-hover">
+                                      <thead class="thead-dark">
+                                        <tr>
+                                          <th scope="col">Driver Code</th>
+                                          <th scrope="col">Action</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="excluded_body">
+                                      
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <div class="col-sm">
+                                    <h5>Add Driver</h5>
+                                    <input maxlength="6" id="new_excluded" type="textbox" placeholder="Innovative Driver Code">
+                                    <button onclick="addExcludedDriver()" class="btn btn-primary">Add</button>
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="card col-sm">
+                                <br>
+                                <h5>Manual Report</h5>
+                                <br> 
+                                <center>
+                                  <form style="margin-top: 0px;">
+                                    <div class="form-group">
+                                        <label for="email"><b>Email: </b></label>
+                                        <input style="width:300px;" pattern=".+@fleetmasterexpress.com" type="email" class="form-control" id="email" name="email"  placeholder="Email">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="company"><b>Company: </b></label>
+                                        <select name="company" id="company">
+                                          <option value="102">102</option>
+                                          <option value="301">301</option>
+                                        </select>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="number_drug"><b>Number of drivers for drug test: </b></label>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value='0' min='0' oninput="validity.valid||(value='');" maxlength="3" style="width: 80px;" type="number" class="form-control" id="number_drug" name="number_drug" placeholder="#">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="number_alc"><b>Number of drivers for alcohol test: </b></label>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value='0' min='0' oninput="validity.valid||(value='');" maxlength="3" style="width: 80px;" type="number" class="form-control" id="number_alc" name="number_alc" placeholder="#">
+                                      </div>
+                                      <button onclick="runManualReport()" type="button" class="btn btn-primary">Run Report</button>
+
+                                </form>
+                              </center>
+
+                              </div>
+                              <div class="card col-sm">
+                                <br>
+                                <h5>Adjust Percentages</h5>
+                                  <center>
+                                    <form style="margin-top: 10px;">
+                                      <div class="form-group">
+                                          <label for="adj_drug"><b>Drug Test Percentage: </b></label>
+                                          <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min='0' maxlength="2" type="number" style="width:80px;"  class="form-control" id="adj_drug" name="adj_drug"  placeholder="%">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="adj_alcohol"><b>Alcohol Test Percentage: </b></label>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min='0' maxlength="2" type="number" style="width:80px;" class="form-control" id="adj_alcohol" name="adj_alcohol"  placeholder="%">
+                                      </div>
+                                      <button onclick="adjustTestPerc()" type="button" class="btn btn-primary">Adjust Percentage</button>
+
+                                  </form>
+                                </center>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        
+          </div>
+
+        
+    </body>
+
+     <!-- Modal -->
+     <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="error_reason"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Dismiss</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Modal -->
+     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="success_reason"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Dismiss</button>
+            </div>
+        </div>
+        </div>
+      </div>
+    
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    
+    
+    <script src="/static/js/admin.js" charset="utf-8"></script>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const fail = urlParams.get('stat')
+        const error = urlParams.get('error')
+        if(fail == 'false'){
+            var errorMsg = document.getElementById('error_reason');
+            errorMsg.innerHTML = "<b>Reason:</b> " +  error;
+            $('#errorModal').modal('show');
+            
+        }
+
+        </script>
+
+</html>

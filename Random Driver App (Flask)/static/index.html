@@ -1,0 +1,131 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/static/css/index.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+        <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+
+            <!-- Sidebar -->
+            <div class="bg-light border-right" id="sidebar-wrapper">
+              <div class="sidebar-heading"><b>Fleetmaster HR</b></div>
+              <div class="list-group list-group-flush">
+                <a href="/" id="nav-option-1" class="list-group-item list-group-item-action bg-dark active">Current Random Tests</a>
+                <a href="/historical" id="nav-option-2" class="list-group-item list-group-item-action bg-light">Historical Random Tests</a>
+                <a href="/admin" id="nav-option-3" class="list-group-item list-group-item-action bg-light">Administration</a>
+
+              </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+        
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+        
+              <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+               
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        
+              <div class="container-fluid">
+                
+                <div class="page" id="nav-option-1-page">
+                  <br>
+                    <h1>Current Random Tests</h1>
+                    
+                    <table id="data_table_1" class="shadow table table-striped table-bordered table-hover">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Row</th>
+                          <th scope="col">Company</th>
+                          <th scope="col">Terminal</th>
+                          <th style="width: 15px;" scope="col">Innovative Code</th>
+                          <th scope="col">Full Name</th>
+                          <th scope="col">Test Type</th>
+                          <th scope="col">Test Date</th>
+                          <th scope="col">Hire Date</th>
+                          <th scope="col">Actions</th>
+
+                        </tr>
+                      </thead>
+                      <tbody id="open_body">
+                        
+                      </tbody>
+                    </table>
+
+                </div>
+              
+
+
+              </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        
+          </div>
+
+        
+    </body>
+    <!-- Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="error_reason"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Dismiss</button>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+    <script src="/static/js/index.js" charset="utf-8"></script>
+
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const error = urlParams.get('error')
+     if (error){
+          var errorMsg = document.getElementById('error_reason');
+          errorMsg.innerHTML = "<b>Reason:</b> " +  error;
+          $('#errorModal').modal('show');
+     }
+      
+
+      </script>
+</html>
